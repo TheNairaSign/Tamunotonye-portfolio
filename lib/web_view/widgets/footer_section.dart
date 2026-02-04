@@ -89,7 +89,7 @@ class FooterSection extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Theme.of(context).dividerColor.withValues(alpha: 0.5),
+        color: Colors.white.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Icon(icon, color: Theme.of(context).iconTheme.color, size: 24),

@@ -55,6 +55,16 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
         onPressed: () => Navigator.pop(context),
       ),
       flexibleSpace: FlexibleSpaceBar(
+        title: Text(
+          widget.project.title,
+          style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+          ),
+        ),
+        titlePadding: const EdgeInsets.only(left: 60, bottom: 16),
+        centerTitle: false,
         background: Stack(
           fit: StackFit.expand,
           children: [
@@ -73,11 +83,33 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
             Center(
               child: Hero(
                 tag: 'project_icon_${widget.project.title}',
-                child: Icon(
-                  Icons.apps,
-                  size: 150,
-                  color: widget.project.color.withValues(alpha: 0.8),
-                ),
+                child: widget.project.screenshotsDark.isNotEmpty
+                    ? Container(
+                        width: 150,
+                        height: 300,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                              color: widget.project.color.withValues(alpha: 0.3),
+                              blurRadius: 40,
+                              spreadRadius: 10,
+                            ),
+                          ],
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Image.asset(
+                            widget.project.screenshotsDark.first,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      )
+                    : Icon(
+                        Icons.apps,
+                        size: 150,
+                        color: widget.project.color.withValues(alpha: 0.8),
+                      ),
               ),
             ),
           ],

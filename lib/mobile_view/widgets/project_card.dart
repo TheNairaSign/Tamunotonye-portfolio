@@ -57,35 +57,67 @@ class _ProjectCardState extends State<ProjectCard> {
             children: [
               // Project Image Placeholder
               Expanded(
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 300),
-                  margin: EdgeInsets.all(_isHovered ? 8 : 12),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        widget.project.color.withValues(alpha: 0.6),
-                        widget.project.color.withValues(alpha: 0.2),
-                      ],
-                    ),
-                  ),
-                  child: Center(
-                    child: AnimatedScale(
-                      scale: _isHovered ? 1.1 : 1.0,
-                      duration: const Duration(milliseconds: 300),
-                      child: Hero(
-                        tag: 'project_icon_${widget.project.title}',
-                        child: Icon(
-                          Icons.apps,
-                          size: 64,
-                          color: Colors.white.withValues(alpha: 0.5),
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      // Subtle Gradient Background
+                      Container(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              widget.project.color.withValues(alpha: 0.2),
+                              widget.project.color.withValues(alpha: 0.05),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
+                      // Floating Mockup
+                      AnimatedScale(
+                        scale: _isHovered ? 1.05 : 1.0,
+                        duration: const Duration(milliseconds: 300),
+                        child: Hero(
+                          tag: 'project_icon_${widget.project.title}',
+                          child: Center(
+                            child: widget.project.screenshotsDark.isNotEmpty
+                                ? Container(
+                                    width: 120,
+                                    height: 240,
+                                    padding: const EdgeInsets.all(4), // Bezels
+                                    decoration: BoxDecoration(
+                                      color: Colors.black,
+                                      borderRadius: BorderRadius.circular(16),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withValues(alpha: 0.4),
+                                          blurRadius: 20,
+                                          offset: const Offset(0, 10),
+                                        ),
+                                      ],
+                                      border: Border.all(
+                                        color: Colors.white.withValues(alpha: 0.1),
+                                        width: 1,
+                                      ),
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(12),
+                                      child: Image.asset(
+                                        widget.project.screenshotsDark.first,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  )
+                                : Icon(
+                                    Icons.apps,
+                                    size: 64,
+                                    color: Colors.white.withValues(alpha: 0.5),
+                                  ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(24),
