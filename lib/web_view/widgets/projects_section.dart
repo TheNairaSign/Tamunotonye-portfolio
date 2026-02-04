@@ -28,7 +28,7 @@ class ProjectsSection extends StatelessWidget {
             shrinkWrap: true,
             crossAxisSpacing: 32,
             mainAxisSpacing: 32,
-            childAspectRatio: 1.1,
+            childAspectRatio: 1.5,
             physics: const NeverScrollableScrollPhysics(),
             children: projectDetails.map((project) => ProjectCard(project: project)).toList(),
           ),

@@ -9,6 +9,7 @@ class TechStackSection extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     final horizontalPadding = width > 1200 ? 80.0 : 40.0;
     final crossAxisCount = width > 1200 ? 4 : (width > 600 ? 2 : 1);
+    final childAspectRatio = width > 1200 ? 2.5 : (width > 600 ? 1.4 : 1.9);
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 80),
@@ -28,7 +29,7 @@ class TechStackSection extends StatelessWidget {
             shrinkWrap: true,
             crossAxisSpacing: 24,
             mainAxisSpacing: 24,
-            childAspectRatio: 1.6,
+            childAspectRatio: childAspectRatio,
             physics: const NeverScrollableScrollPhysics(),
             children: [
               _buildStackCard(context, 'MOBILE', ['Flutter', 'Dart']),

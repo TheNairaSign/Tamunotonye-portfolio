@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import '../../core/theme.dart';
 
-class FooterSection extends StatelessWidget {
+class FooterSection extends StatefulWidget {
   const FooterSection({super.key});
+
+  @override
+  State<FooterSection> createState() => _FooterSectionState();
+}
+
+class _FooterSectionState extends State<FooterSection> {
+  bool _showContactInfo = false;
 
   @override
   Widget build(BuildContext context) {
@@ -44,21 +51,50 @@ class FooterSection extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 60),
-          ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.primary,
-              foregroundColor: Colors.black,
-              padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 24),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
+          Column(
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    _showContactInfo = !_showContactInfo;
+                  });
+                },
+              style: ElevatedButton.styleFrom(
+                backgroundColor:AppColors.primary,
+                foregroundColor: Colors.black,
+                padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 24),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                elevation: 0,
               ),
-              elevation: 0,
-            ),
-            child: const Text(
-              'Get in Touch',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
+              child: const Text(
+                'Get in Touch',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+                            ),
+              AnimatedSize(
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+                child: SizedBox(
+                  height: _showContactInfo ? null : 0,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 24),
+                    child: AnimatedOpacity(
+                      opacity: _showContactInfo ? 1.0 : 0.0,
+                      duration: const Duration(milliseconds: 300),
+                      child: Column(
+                        children: [
+                          _buildContactDetail(context, Icons.phone, "+234 8141389878"),
+                          const SizedBox(height: 12),
+                          _buildContactDetail(context, Icons.email, "tonyebobmanuel2@gmail.com"),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 100),
           Divider(color: Theme.of(context).dividerColor),
@@ -133,6 +169,24 @@ class FooterSection extends StatelessWidget {
         fontWeight: FontWeight.w500,
         fontSize: 14,
       ),
+    );
+  }
+
+  Widget _buildContactDetail(BuildContext context, IconData icon, String text) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(icon, color: AppColors.primary, size: 20),
+        const SizedBox(width: 12),
+        Text(
+          text,
+          style: TextStyle(
+            fontSize: 16,
+            color: Theme.of(context).textTheme.bodyMedium?.color,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ],
     );
   }
 }
