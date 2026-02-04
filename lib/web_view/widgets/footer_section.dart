@@ -13,10 +13,11 @@ class FooterSection extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 100),
       child: Column(
         children: [
-          const Text(
+           Text(
             "Let's build something solid.",
+            textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 64,
+              fontSize: width > 1000 ? 64 : (width > 600 ? 48 : 36),
               fontWeight: FontWeight.w900,
               letterSpacing: -1.5,
             ),
@@ -26,7 +27,7 @@ class FooterSection extends StatelessWidget {
             "Whether you have a question or just want to discuss your next big idea, my\ninbox is always open.",
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 18,
+              fontSize: width > 1000 ? 18 : 16,
               color: Theme.of(context).textTheme.bodyMedium?.color?.withValues(alpha: 0.6),
               height: 1.6,
             ),
@@ -62,27 +63,52 @@ class FooterSection extends StatelessWidget {
           const SizedBox(height: 100),
           Divider(color: Theme.of(context).dividerColor),
           const SizedBox(height: 40),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                '© 2026 Tamunotonye Bob-Manuel. Built with Flutter & Passion.',
-                style: TextStyle(
-                  color: Theme.of(context).textTheme.bodySmall?.color?.withValues(alpha: 0.4),
-                  fontSize: 14,
+          if (width > 800)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  '© 2026 Tamunotonye Bob-Manuel. Built with Flutter & Passion.',
+                  style: TextStyle(
+                    color: Theme.of(context).textTheme.bodySmall?.color?.withValues(alpha: 0.4),
+                    fontSize: 14,
+                  ),
                 ),
-              ),
-              Row(
-                children: [
-                  _buildFooterLink(context, 'LinkedIn'),
-                  const SizedBox(width: 24),
-                  _buildFooterLink(context, 'Twitter'),
-                  const SizedBox(width: 24),
-                  _buildFooterLink(context, 'Dribbble'),
-                ],
-              ),
-            ],
-          ),
+                Row(
+                  children: [
+                    _buildFooterLink(context, 'LinkedIn'),
+                    const SizedBox(width: 24),
+                    _buildFooterLink(context, 'Twitter'),
+                    const SizedBox(width: 24),
+                    _buildFooterLink(context, 'Dribbble'),
+                  ],
+                ),
+              ],
+            )
+          else
+            Column(
+              children: [
+                Text(
+                  '© 2026 Tamunotonye Bob-Manuel.\nBuilt with Flutter & Passion.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Theme.of(context).textTheme.bodySmall?.color?.withValues(alpha: 0.4),
+                    fontSize: 14,
+                  ),
+                ),
+                const SizedBox(height: 24),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildFooterLink(context, 'LinkedIn'),
+                    const SizedBox(width: 24),
+                    _buildFooterLink(context, 'Twitter'),
+                    const SizedBox(width: 24),
+                    _buildFooterLink(context, 'Dribbble'),
+                  ],
+                ),
+              ],
+            ),
         ],
       ),
     );

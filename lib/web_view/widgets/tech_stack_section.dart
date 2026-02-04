@@ -8,7 +8,7 @@ class TechStackSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final horizontalPadding = width > 1200 ? 80.0 : 40.0;
-    final crossAxisCount = width > 1200 ? 4 : 2;
+    final crossAxisCount = width > 1200 ? 4 : (width > 600 ? 2 : 1);
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 80),

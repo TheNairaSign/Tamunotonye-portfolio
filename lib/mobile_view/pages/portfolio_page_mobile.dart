@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/core/theme.dart';
 import 'package:portfolio/mobile_view/widgets/project_card.dart';
 import 'package:portfolio/web_view/models/project_data.dart';
+import 'package:portfolio/web_view/widgets/tech_stack_section.dart';
+import 'package:portfolio/web_view/widgets/footer_section.dart';
 import 'package:web/web.dart' as web;
 
 class PortfolioPageMobile extends StatelessWidget {
@@ -194,6 +196,8 @@ class PortfolioPageMobile extends StatelessWidget {
               ),
             ),
           ),
+          const SliverToBoxAdapter(child: TechStackSection()),
+          const SliverToBoxAdapter(child: FooterSection()),
           const SliverPadding(padding: EdgeInsets.only(bottom: 40)),
         ],
       ),
