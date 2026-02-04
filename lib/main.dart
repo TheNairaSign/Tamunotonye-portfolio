@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'core/theme.dart';
 import 'web_view/pages/portfolio_page_web.dart';
+import 'mobile_view/pages/portfolio_page_mobile.dart';
 
 void main() {
   runApp(const Portfolio());
@@ -15,7 +16,14 @@ class Portfolio extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Tamunotonye Bob-Manuel | Portfolio',
       theme: AppTheme.darkTheme(context),
-      home: const PortfolioPageWeb(),
+      home: LayoutBuilder(
+        builder: (context, constraints) {
+          if (constraints.maxWidth < 800) {
+            return const PortfolioPageMobile();
+          }
+          return const PortfolioPageWeb();
+        },
+      ),
     );
   }
 }

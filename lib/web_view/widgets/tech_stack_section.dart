@@ -7,7 +7,7 @@ class TechStackSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 80),
+      padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 80),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

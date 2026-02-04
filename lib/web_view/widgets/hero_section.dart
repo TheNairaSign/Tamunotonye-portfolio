@@ -8,7 +8,7 @@ class HeroSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 60),
+      padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 60),
       child: Row(
         children: [
           // Left Side

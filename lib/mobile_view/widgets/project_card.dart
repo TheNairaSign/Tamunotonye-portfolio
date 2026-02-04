@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/core/theme.dart';
 import 'package:portfolio/web_view/models/project_data.dart';
 import 'package:portfolio/web_view/pages/project_details_page.dart';
+import 'package:portfolio/mobile_view/pages/project_details_page_mobile.dart';
 
 class ProjectCard extends StatefulWidget {
   const ProjectCard({super.key, required this.project});
@@ -22,12 +23,21 @@ class _ProjectCardState extends State<ProjectCard> {
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ProjectDetailsPage(project: widget.project),
-            ),
-          );
+          if (MediaQuery.of(context).size.width < 800) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ProjectDetailsPageMobile(project: widget.project),
+              ),
+            );
+          } else {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ProjectDetailsPage(project: widget.project),
+              ),
+            );
+          }
         },
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 300),
