@@ -7,8 +7,11 @@ class ProjectsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final horizontalPadding = width > 1200 ? 80.0 : 40.0;
+    
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 80),
+      padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 80),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

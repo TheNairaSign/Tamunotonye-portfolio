@@ -7,8 +7,11 @@ class HeroSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final horizontalPadding = width > 1200 ? 80.0 : 40.0;
+
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 60),
+      padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 60),
       child: Row(
         children: [
           // Left Side
@@ -37,7 +40,7 @@ class HeroSection extends StatelessWidget {
                 Text(
                   'Tamunotonye Bob-Manuel',
                   style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                    fontSize: 52,
+                    fontSize: width > 1000 ? 52 : 40,
                     fontWeight: FontWeight.w900,
                     height: 1.1, 
                   ),
@@ -46,7 +49,7 @@ class HeroSection extends StatelessWidget {
                 Text(
                   'Mobile App Developer | Flutter • Dart • \nFirebase • Clean Architecture',
                   style: TextStyle(
-                    fontSize: 24,
+                    fontSize: width > 1000 ? 24 : 18,
                     color: Theme.of(context).textTheme.bodyMedium?.color?.withValues(alpha: 0.8),
                     height: 1.4,
                   ),
@@ -55,7 +58,7 @@ class HeroSection extends StatelessWidget {
                 Text(
                   'I build scalable, production-ready mobile applications with\na focus on performance and clean, maintainable code.',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: width > 1000 ? 18 : 16,
                     color: Theme.of(context).textTheme.bodyMedium?.color?.withValues(alpha: 0.6),
                     height: 1.6,
                   ),

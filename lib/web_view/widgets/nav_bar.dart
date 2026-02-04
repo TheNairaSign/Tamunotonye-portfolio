@@ -26,8 +26,11 @@ void openPdf() {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final horizontalPadding = width > 1200 ? 80.0 : 40.0;
+
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 30),
+      padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 30),
       child: Row(
         children: [
           Row(
@@ -55,11 +58,15 @@ void openPdf() {
           ),
           const Spacer(),
 
-          _buildNavLink(context, 'Projects', onProjectsTap),
-          _buildNavLink(context, 'About', onAboutTap),
-          _buildNavLink(context, 'Tech Stack', onTechStackTap),
-          _buildNavLink(context, 'Contact', onContactTap),
-          const SizedBox(width: 30),
+          // Responsive Navigation Links
+          if (width > 900) ...[
+            _buildNavLink(context, 'Projects', onProjectsTap),
+            _buildNavLink(context, 'About', onAboutTap),
+            _buildNavLink(context, 'Tech Stack', onTechStackTap),
+            _buildNavLink(context, 'Contact', onContactTap),
+          ],
+          
+          SizedBox(width: width > 1000 ? 30 : 16),
 
           ElevatedButton(
             onPressed: () => openPdf(),
@@ -83,8 +90,11 @@ void openPdf() {
   }
 
   Widget _buildNavLink(BuildContext context, String title, VoidCallback onTap) {
+    final width = MediaQuery.of(context).size.width;
+    final padding = width > 1000 ? 20.0 : 10.0;
+    
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: EdgeInsets.symmetric(horizontal: padding),
       child: TextButton(
         onPressed: onTap,
         child: Text(

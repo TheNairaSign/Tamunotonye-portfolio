@@ -6,8 +6,11 @@ class PhilosophySection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final horizontalPadding = width > 1200 ? 80.0 : 40.0;
+
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 100),
+      padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 100),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -24,12 +27,12 @@ class PhilosophySection extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Expanded(
+              Expanded(
                 flex: 2,
                 child: Text(
                   'Minimal engineering bio focusing on\nclean architecture, performance\noptimization, and robust state\nmanagement using BloC and Provider.\nDedicated to crafting seamless user\nexperiences with a solid backend\nintegration.',
                   style: TextStyle(
-                    fontSize: 32,
+                    fontSize: width > 1000 ? 32 : 24,
                     fontWeight: FontWeight.w600,
                     height: 1.4,
                   ),

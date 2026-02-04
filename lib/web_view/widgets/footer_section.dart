@@ -6,8 +6,11 @@ class FooterSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final horizontalPadding = width > 1200 ? 80.0 : 40.0;
+
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 100),
+      padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 100),
       child: Column(
         children: [
           const Text(

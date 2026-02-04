@@ -6,8 +6,12 @@ class TechStackSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final horizontalPadding = width > 1200 ? 80.0 : 40.0;
+    final crossAxisCount = width > 1200 ? 4 : 2;
+
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 80),
+      padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 80),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -20,7 +24,7 @@ class TechStackSection extends StatelessWidget {
           ),
           const SizedBox(height: 48),
           GridView.count(
-            crossAxisCount: 4,
+            crossAxisCount: crossAxisCount,
             shrinkWrap: true,
             crossAxisSpacing: 24,
             mainAxisSpacing: 24,
