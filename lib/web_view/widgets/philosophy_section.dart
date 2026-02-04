@@ -40,12 +40,14 @@ class PhilosophySection extends StatelessWidget {
                 child: Column(
                   children: [
                     _buildPoint(
+                      context,
                       Icons.architecture,
                       'Clean Architecture',
                       'Separation of concerns for highly\ntestable code.',
                     ),
                     const SizedBox(height: 48),
                     _buildPoint(
+                      context,
                       Icons.speed,
                       'Optimization',
                       '60 FPS performance and optimized\nasset loading.',
@@ -60,14 +62,14 @@ class PhilosophySection extends StatelessWidget {
     );
   }
 
-  Widget _buildPoint(IconData icon, String title, String description) {
+  Widget _buildPoint(BuildContext context, IconData icon, String title, String description) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: AppColors.primary.withOpacity(0.1),
+            color: AppColors.primary.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(12),
           ),
           child: Icon(icon, color: AppColors.primary, size: 24),
@@ -89,7 +91,7 @@ class PhilosophySection extends StatelessWidget {
                 description,
                 style: TextStyle(
                   fontSize: 14,
-                  color: AppColors.textSecondary.withOpacity(0.7),
+                  color: Theme.of(context).textTheme.bodyMedium?.color?.withValues(alpha: 0.7),
                   height: 1.5,
                 ),
               ),

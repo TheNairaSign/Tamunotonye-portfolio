@@ -64,6 +64,12 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/screenshots/
+    - assets/screenshots/thingsmatch/
+    - assets/screenshots/cluttercut/
+    - assets/screenshots/airdesk/
+    - assets/screenshots/loop/
+    - assets/screenshots/natcycle/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

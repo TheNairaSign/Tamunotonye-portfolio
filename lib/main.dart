@@ -14,7 +14,7 @@ class Portfolio extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Tamunotonye Bob-Manuel | Portfolio',
-      theme: AppTheme.darkTheme,
+      theme: AppTheme.darkTheme(context),
       home: const PortfolioPageWeb(),
     );
   }

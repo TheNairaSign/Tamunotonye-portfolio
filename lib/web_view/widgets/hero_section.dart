@@ -47,7 +47,7 @@ class HeroSection extends StatelessWidget {
                   'Mobile App Developer | Flutter • Dart • \nFirebase • Clean Architecture',
                   style: TextStyle(
                     fontSize: 24,
-                    color: AppColors.textSecondary,
+                    color: Theme.of(context).textTheme.bodyMedium?.color?.withValues(alpha: 0.8),
                     height: 1.4,
                   ),
                 ),
@@ -56,7 +56,7 @@ class HeroSection extends StatelessWidget {
                   'I build scalable, production-ready mobile applications with\na focus on performance and clean, maintainable code.',
                   style: TextStyle(
                     fontSize: 18,
-                    color: AppColors.textSecondary.withValues(alpha: 0.6),
+                    color: Theme.of(context).textTheme.bodyMedium?.color?.withValues(alpha: 0.6),
                     height: 1.6,
                   ),
                 ),
@@ -80,8 +80,8 @@ class HeroSection extends StatelessWidget {
                     OutlinedButton(
                       onPressed: () {},
                       style: OutlinedButton.styleFrom(
-                        foregroundColor: AppColors.textMain,
-                        side: const BorderSide(color: Colors.white24),
+                        foregroundColor: Theme.of(context).textTheme.bodyLarge?.color,
+                        side: BorderSide(color: Theme.of(context).dividerColor),
                         padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),

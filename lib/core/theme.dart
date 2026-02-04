@@ -11,12 +11,16 @@ class AppColors {
 }
 
 class AppTheme {
-  static ThemeData get darkTheme {
+  static ThemeData darkTheme(BuildContext context) {
     return ThemeData(
       brightness: Brightness.dark,
       scaffoldBackgroundColor: AppColors.background,
       primaryColor: AppColors.primary,
-      textTheme: GoogleFonts.outfitTextTheme().apply(
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Color(0xFF0F0F0F),
+        elevation: 0,
+      ),
+      textTheme: GoogleFonts.outfitTextTheme(Theme.of(context).textTheme).apply(
         bodyColor: AppColors.textMain,
         displayColor: AppColors.textMain,
       ),
@@ -24,7 +28,9 @@ class AppTheme {
         primary: AppColors.primary,
         surface: AppColors.cardBackground,
         onSurface: AppColors.textMain,
+        onPrimary: Colors.black,
       ),
+      dividerColor: AppColors.divider,
     );
   }
 }

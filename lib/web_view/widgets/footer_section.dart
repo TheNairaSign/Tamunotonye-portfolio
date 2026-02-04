@@ -24,7 +24,7 @@ class FooterSection extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 18,
-              color: AppColors.textSecondary.withValues(alpha: 0.6),
+              color: Theme.of(context).textTheme.bodyMedium?.color?.withValues(alpha: 0.6),
               height: 1.6,
             ),
           ),
@@ -32,11 +32,11 @@ class FooterSection extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _buildSocialIcon(Icons.link),
+              _buildSocialIcon(context, Icons.link),
               const SizedBox(width: 20),
-              _buildSocialIcon(Icons.terminal),
+              _buildSocialIcon(context, Icons.terminal),
               const SizedBox(width: 20),
-              _buildSocialIcon(Icons.email_outlined),
+              _buildSocialIcon(context, Icons.email_outlined),
             ],
           ),
           const SizedBox(height: 60),
@@ -57,7 +57,7 @@ class FooterSection extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 100),
-          const Divider(color: AppColors.divider),
+          Divider(color: Theme.of(context).dividerColor),
           const SizedBox(height: 40),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -65,17 +65,17 @@ class FooterSection extends StatelessWidget {
               Text(
                 '© 2026 Tamunotonye Bob-Manuel. Built with Flutter & Passion.',
                 style: TextStyle(
-                  color: AppColors.textSecondary.withValues(alpha: 0.4),
+                  color: Theme.of(context).textTheme.bodySmall?.color?.withValues(alpha: 0.4),
                   fontSize: 14,
                 ),
               ),
               Row(
                 children: [
-                  _buildFooterLink('LinkedIn'),
+                  _buildFooterLink(context, 'LinkedIn'),
                   const SizedBox(width: 24),
-                  _buildFooterLink('Twitter'),
+                  _buildFooterLink(context, 'Twitter'),
                   const SizedBox(width: 24),
-                  _buildFooterLink('Dribbble'),
+                  _buildFooterLink(context, 'Dribbble'),
                 ],
               ),
             ],
@@ -85,22 +85,22 @@ class FooterSection extends StatelessWidget {
     );
   }
 
-  Widget _buildSocialIcon(IconData icon) {
+  Widget _buildSocialIcon(BuildContext context, IconData icon) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.05),
+        color: Theme.of(context).dividerColor.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Icon(icon, color: Colors.white, size: 24),
+      child: Icon(icon, color: Theme.of(context).iconTheme.color, size: 24),
     );
   }
 
-  Widget _buildFooterLink(String title) {
+  Widget _buildFooterLink(BuildContext context, String title) {
     return Text(
       title,
       style: TextStyle(
-        color: AppColors.textSecondary.withValues(alpha: 0.6),
+        color: Theme.of(context).textTheme.bodyMedium?.color?.withValues(alpha: 0.6),
         fontWeight: FontWeight.w500,
         fontSize: 14,
       ),

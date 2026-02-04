@@ -3,58 +3,110 @@ import 'dart:ui';
 class ProjectData {
   final String title;
   final String description;
+  final String longDescription;
   final List<String> tags;
   final Color color;
+  final String? githubUrl;
+  final String? liveUrl;
+  final List<String> screenshotsLight;
+  final List<String> screenshotsDark;
 
   ProjectData({
     required this.title,
     required this.description,
+    required this.longDescription,
     required this.tags,
     required this.color,
+    this.githubUrl,
+    this.liveUrl,
+    this.screenshotsLight = const [],
+    this.screenshotsDark = const [],
   });
 }
 
 final List<ProjectData> projectDetails = [
   ProjectData(
     title: 'Airdesk',
-    description:
-        'A free file sharing platform between internet devices',
-    tags: ['REST APIs', 'Riverpod'],
+    description: 'A free file sharing platform between internet devices',
+    longDescription:
+        'Airdesk is a high-performance file sharing solution built to handle rapid data transfer between multiple devices on the same network. It leverages custom REST APIs and Riverpod for robust state management, ensuring a seamless user experience across mobile and web platforms.',
+    tags: ['REST APIs', 'Riverpod', 'WebSockets'],
     color: const Color(0xFF3498DB),
+    githubUrl: 'https://github.com/alexrivers/airdesk',
+    screenshotsLight: ['assets/screenshots/airdesk/airdesk-dash-light.jpg'],
+    screenshotsDark: ['assets/screenshots/airdesk/airdesk-dash-dark.jpg'],
   ),
   ProjectData(
     title: 'Vennloop',
     description:
         'A secure video conferencing networking platform for Consultants and Clients',
-    tags: ['REST APIs', 'Agora SDK', 'Socket.io', 'Firebase Notifications'],
-    color: const Color(0xFF3498DB),
+    longDescription:
+        'Vennloop revolutionizes consultant-client interactions with encrypted video conferencing and real-time scheduling. Integrated with Agora SDK for high-quality video and Socket.io for low-latency messaging, it provides a professional-grade communication environment.',
+    tags: ['Agora SDK', 'Socket.io', 'Firebase', 'Clean Arch'],
+    color: const Color(0xFF9B59B6),
+    liveUrl: 'https://vennloop.com',
+    screenshotsLight: [],
+    screenshotsDark: [],
   ),
   ProjectData(
-      title: 'Natcycle',
-      description:
-          'A collaborative project management tool for remote teams with offline-first capabilities and real-time syncing across devices.',
-      tags: ['PROVIDER', 'Google Maps SDK', 'ChatBot'],
-      color: const Color(0xFFF1C40F),
-    ),
+    title: 'Natcycle',
+    description:
+        'A collaborative project management tool for remote teams with offline-first capabilities.',
+    longDescription:
+        'Natcycle addresses the challenges of remote team collaboration with a powerful offline-first architecture. Teams can sync tasks in real-time, navigate project locations via Google Maps SDK, and interact with an AI-driven ChatBot for workflow automation.',
+    tags: ['Provider', 'Google Maps', 'ChatBot', 'OfflineSync'],
+    color: const Color(0xFFF1C40F),
+    githubUrl: 'https://github.com/alexrivers/natcycle',
+    screenshotsLight: [
+      'assets/screenshots/natcycle/natcycle-dash-light.jpg',
+      'assets/screenshots/natcycle/natcycle-map-light.jpg',
+      'assets/screenshots/natcycle/natcycle-map-details-light.jpg',
+    ],
+    screenshotsDark: [
+      'assets/screenshots/natcycle/natcycle-dash-dark.jpg',
+      'assets/screenshots/natcycle/natcycle-map-dark.jpg',
+      'assets/screenshots/natcycle/natcycle-map-details-dark.jpg',
+    ],
+  ),
   ProjectData(
-      title: 'Thingsmatch',
-      description:
-          'High-fidelity music streaming application with background playback, custom audio effects, and smart playlist generation.',
-      tags: ['Feature-First', 'Socket.io', 'Firebase Notifications'],
-      color: const Color(0xFFE74C3C),
-    ),
+    title: 'Thingsmatch',
+    description:
+        'High-fidelity music streaming application with background playback and custom audio effects.',
+    longDescription:
+        'Thingsmatch is a high-end music streaming experience focusing on audio fidelity. It features a custom audio engine, background playback services, and complex state management using a feature-first architecture.',
+    tags: ['Audio Engine', 'Feature-First', 'Socket.io'],
+    color: const Color(0xFFE74C3C),
+    screenshotsLight: [
+      'assets/screenshots/thingsmatch/tm-dash-light.jpg',
+      'assets/screenshots/thingsmatch/tm-details-light.jpg',
+      'assets/screenshots/thingsmatch/tm-impact-light.jpg',
+    ],
+    screenshotsDark: [
+      'assets/screenshots/thingsmatch/tm-dash-dark.jpg',
+      'assets/screenshots/thingsmatch/tm-details-dark.jpg',
+      'assets/screenshots/thingsmatch/tm-impact-dark.jpg',
+    ],
+  ),
   ProjectData(
     title: 'Loop',
     description:
-        'An offline-first app that helps you intentionally stay connected with the people who matter through smart contact reminders, safety features, and optional communication tools.',
-    tags: ['BLOC', 'ISAR', 'Firebase Notifications'],
+        'An offline-first app for intentional connection with smart reminders and safety features.',
+    longDescription:
+        'Loop helps users maintain meaningful relationships through intelligent contact tracking. Built with BLoC and Isar Database, it ensures data privacy while providing powerful reminders, safety alerts, and seamless cloud backups.',
+    tags: ['BLoC', 'Isar', 'Firebase', 'LocalFirst'],
     color: const Color(0xFF1ABC9C),
+    githubUrl: 'https://github.com/alexrivers/loop',
+    screenshotsLight: [
+      'assets/screenshots/loop/loop-dash-light.jpg',
+      'assets/screenshots/loop/loop-activity-light.jpg',
+      'assets/screenshots/loop/loop-call-light.jpg',
+      'assets/screenshots/loop/loop-relationship-light.jpg',
+    ],
+    screenshotsDark: [
+      'assets/screenshots/loop/loop-dash-dark.jpg',
+      'assets/screenshots/loop/loop-activity-dark.jpg',
+      'assets/screenshots/loop/loop-call-dark.jpg',
+      'assets/screenshots/loop/loop-relationship-dark.jpg',
+    ],
   ),
-  // ProjectData(
-  //   title: 'TaskFlow',
-  //   description:
-  //       'designed to help small teams organize, schedule, and manage tasks efficiently, combining API-driven data, clean architecture, and a modern, intuitive user interface.',
-  //   tags: ['BLOC', 'ISAR', 'Firebase Notifications'],
-  //   color: const Color(0xFF1ABC9C),
-  // ),
 ];

@@ -42,10 +42,10 @@ void openPdf() {
                 child: const Icon(Icons.code, color: Colors.black, size: 20),
               ),
               const SizedBox(width: 12),
-              const Text(
+              Text(
                 'Tamunotonye Bob-Manuel',
                 style: TextStyle(
-                  color: AppColors.textMain,
+                  color: Theme.of(context).textTheme.bodyLarge?.color,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                   letterSpacing: -0.5,
@@ -55,10 +55,10 @@ void openPdf() {
           ),
           const Spacer(),
 
-          _buildNavLink('Projects', onProjectsTap),
-          _buildNavLink('About', onAboutTap),
-          _buildNavLink('Tech Stack', onTechStackTap),
-          _buildNavLink('Contact', onContactTap),
+          _buildNavLink(context, 'Projects', onProjectsTap),
+          _buildNavLink(context, 'About', onAboutTap),
+          _buildNavLink(context, 'Tech Stack', onTechStackTap),
+          _buildNavLink(context, 'Contact', onContactTap),
           const SizedBox(width: 30),
 
           ElevatedButton(
@@ -82,15 +82,15 @@ void openPdf() {
     );
   }
 
-  Widget _buildNavLink(String title, VoidCallback onTap) {
+  Widget _buildNavLink(BuildContext context, String title, VoidCallback onTap) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: TextButton(
         onPressed: onTap,
         child: Text(
           title,
-          style: const TextStyle(
-            color: AppColors.textMain,
+          style: TextStyle(
+            color: Theme.of(context).textTheme.bodyMedium?.color,
             fontWeight: FontWeight.w500,
           ),
         ),
