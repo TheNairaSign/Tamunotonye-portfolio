@@ -24,7 +24,8 @@ class TechStackSection extends StatelessWidget {
             shrinkWrap: true,
             crossAxisSpacing: 24,
             mainAxisSpacing: 24,
-            childAspectRatio: 1.4,
+            childAspectRatio: 1.6,
+            physics: const NeverScrollableScrollPhysics(),
             children: [
               _buildStackCard(context, 'MOBILE', ['Flutter', 'Dart']),
               _buildStackCard(context, 'STATE MANAGEMENT', ['BLoC', 'Provider', 'Riverpod']),

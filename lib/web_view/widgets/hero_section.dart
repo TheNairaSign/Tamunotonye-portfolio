@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import '../../core/theme.dart';
 
 class HeroSection extends StatelessWidget {
-  const HeroSection({super.key});
+  const HeroSection({super.key, required this.onViewProjects});
+  final VoidCallback onViewProjects;
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +64,7 @@ class HeroSection extends StatelessWidget {
                 Row(
                   children: [
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: onViewProjects,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primary,
                         foregroundColor: Colors.black,

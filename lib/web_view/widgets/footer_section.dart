@@ -63,7 +63,7 @@ class FooterSection extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '© 2024 Alex Rivers. Built with Flutter & Passion.',
+                '© 2026 Tamunotonye Bob-Manuel. Built with Flutter & Passion.',
                 style: TextStyle(
                   color: AppColors.textSecondary.withValues(alpha: 0.4),
                   fontSize: 14,

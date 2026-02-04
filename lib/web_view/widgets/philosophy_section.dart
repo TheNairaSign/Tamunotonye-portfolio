@@ -27,7 +27,7 @@ class PhilosophySection extends StatelessWidget {
               const Expanded(
                 flex: 2,
                 child: Text(
-                  'Minimal engineering bio focusing on\nclean architecture, performance\noptimization, and robust state\nmanagement using BloC and Provider.\nDedicated to crafting seamless user\nexperiences with a solid backend\nfoundation.',
+                  'Minimal engineering bio focusing on\nclean architecture, performance\noptimization, and robust state\nmanagement using BloC and Provider.\nDedicated to crafting seamless user\nexperiences with a solid backend\nintegration.',
                   style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.w600,

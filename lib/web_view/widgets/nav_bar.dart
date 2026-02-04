@@ -1,8 +1,28 @@
 import 'package:flutter/material.dart';
 import '../../core/theme.dart';
 
+import 'package:web/web.dart' as web;
+
 class NavBar extends StatelessWidget {
-  const NavBar({super.key});
+  final VoidCallback onProjectsTap;
+  final VoidCallback onAboutTap;
+  final VoidCallback onTechStackTap;
+  final VoidCallback onContactTap;
+
+  const NavBar({
+    super.key,
+    required this.onProjectsTap,
+    required this.onAboutTap,
+    required this.onTechStackTap,
+    required this.onContactTap,
+  });
+
+
+void openPdf() {
+  final url = 'https://cdn.syncfusion.com/content/PDFViewer/flutter-succinctly.pdf';
+  web.window.open(url, '_blank');
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +30,6 @@ class NavBar extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 30),
       child: Row(
         children: [
-          // Logo
           Row(
             children: [
               Container(
@@ -35,15 +54,15 @@ class NavBar extends StatelessWidget {
             ],
           ),
           const Spacer(),
-          // Links
-          _buildNavLink('Projects'),
-          _buildNavLink('About'),
-          _buildNavLink('Tech Stack'),
-          _buildNavLink('Contact'),
+
+          _buildNavLink('Projects', onProjectsTap),
+          _buildNavLink('About', onAboutTap),
+          _buildNavLink('Tech Stack', onTechStackTap),
+          _buildNavLink('Contact', onContactTap),
           const SizedBox(width: 30),
-          // Resume Button
+
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () => openPdf(),
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.primary,
               foregroundColor: Colors.black,
@@ -63,11 +82,11 @@ class NavBar extends StatelessWidget {
     );
   }
 
-  Widget _buildNavLink(String title) {
+  Widget _buildNavLink(String title, VoidCallback onTap) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: TextButton(
-        onPressed: () {},
+        onPressed: onTap,
         child: Text(
           title,
           style: const TextStyle(
