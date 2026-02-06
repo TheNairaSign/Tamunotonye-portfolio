@@ -7,10 +7,11 @@ class PhilosophySection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    final horizontalPadding = width > 1200 ? 80.0 : 40.0;
+    final horizontalPadding = width > 1200 ? 80.0 : (width > 600 ? 40.0 : 20.0);
+    final verticalPadding = width > 900 ? 100.0 : 60.0;
 
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 100),
+      padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: verticalPadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -24,42 +25,71 @@ class PhilosophySection extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 32),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                flex: 2,
-                child: Text(
-                  'Minimal engineering bio focusing on\nclean architecture, performance\noptimization, and robust state\nmanagement using BloC and Provider.\nDedicated to crafting seamless user\nexperiences with a solid backend\nintegration.',
+          if (width > 900)
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  flex: 2,
+                  child: Text(
+                    'Engineering is more than just writing code; It\'s about building systems that scale. I specialize in production-grade applications where clean architecture meets high-performance engineering. By mastering BloC and Clean Architecture, I ensure every feature is testable, fluid, and built to evolve.',
+                    style: TextStyle(
+                      fontSize: width > 1200 ? 32 : 28,
+                      fontWeight: FontWeight.w600,
+                      height: 1.4,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 80),
+                Expanded(
+                  child: Column(
+                    children: [
+                      _buildPoint(
+                        context,
+                        Icons.architecture,
+                        'Scalable Architecture',
+                        'Implementing Clean Architecture for modular, testable, and maintainable systems.',
+                      ),
+                      const SizedBox(height: 40),
+                      _buildPoint(
+                        context,
+                        Icons.speed,
+                        'Performance First',
+                        'Optimizing for 60 FPS and efficient resource management for a premium feel.',
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            )
+          else
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Engineering is more than just writing code; it\'s about building systems that scale. I specialize in production-grade applications where clean architecture meets high-performance engineering.',
                   style: TextStyle(
-                    fontSize: width > 1000 ? 32 : 24,
+                    fontSize: width > 600 ? 28 : 22,
                     fontWeight: FontWeight.w600,
                     height: 1.4,
                   ),
                 ),
-              ),
-              const SizedBox(width: 100),
-              Expanded(
-                child: Column(
-                  children: [
-                    _buildPoint(
-                      context,
-                      Icons.architecture,
-                      'Clean Architecture',
-                      'Separation of concerns for highly\ntestable code.',
-                    ),
-                    const SizedBox(height: 48),
-                    _buildPoint(
-                      context,
-                      Icons.speed,
-                      'Optimization',
-                      '60 FPS performance and optimized\nasset loading.',
-                    ),
-                  ],
+                const SizedBox(height: 48),
+                _buildPoint(
+                  context,
+                  Icons.architecture,
+                  'Scalable Architecture',
+                  'Implementing Clean Architecture for modular, testable, and maintainable systems.',
                 ),
-              ),
-            ],
-          ),
+                const SizedBox(height: 32),
+                _buildPoint(
+                  context,
+                  Icons.speed,
+                  'Performance First',
+                  'Optimizing for 60 FPS and efficient resource management for a premium feel.',
+                ),
+              ],
+            ),
         ],
       ),
     );

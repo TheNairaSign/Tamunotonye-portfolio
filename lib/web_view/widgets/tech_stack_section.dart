@@ -9,7 +9,7 @@ class TechStackSection extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     final horizontalPadding = width > 1200 ? 80.0 : 40.0;
     final crossAxisCount = width > 1200 ? 4 : (width > 600 ? 2 : 1);
-    final childAspectRatio = width > 1200 ? 2.5 : (width > 600 ? 1.4 : 1.9);
+
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 80),
@@ -24,34 +24,37 @@ class TechStackSection extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 48),
-          GridView.count(
-            crossAxisCount: crossAxisCount,
-            shrinkWrap: true,
-            crossAxisSpacing: 24,
-            mainAxisSpacing: 24,
-            childAspectRatio: childAspectRatio,
-            physics: const NeverScrollableScrollPhysics(),
-            children: [
-              _buildStackCard(context, 'MOBILE', ['Flutter', 'Dart']),
-              _buildStackCard(context, 'STATE MANAGEMENT', ['BLoC', 'Provider', 'Riverpod']),
-              _buildStackCard(context, 'BACKEND', ['Firebase', 'Supabase', 'Rest APIs']),
-              _buildStackCard(context, 'ARCHITECTURE', ['MVVM', 'Clean Architecture', 'TDD']),
-            ],
+          LayoutBuilder(
+            builder: (context, constraints) {
+              final cardWidth = (constraints.maxWidth - (crossAxisCount - 1) * 24) / crossAxisCount;
+              return Wrap(
+                spacing: 24,
+                runSpacing: 24,
+                children: [
+                  _buildStackCard(context, 'MOBILE', ['Flutter', 'Dart'], cardWidth),
+                  _buildStackCard(context, 'STATE MANAGEMENT', ['BLoC', 'Provider', 'Riverpod'], cardWidth),
+                  _buildStackCard(context, 'BACKEND', ['Firebase', 'Supabase', 'Rest APIs'], cardWidth),
+                  _buildStackCard(context, 'ARCHITECTURE', ['MVVM', 'Clean Architecture', 'TDD'], cardWidth),
+                ],
+              );
+            },
           ),
         ],
       ),
     );
   }
 
-  Widget _buildStackCard(BuildContext context, String category, List<String> items) {
+  Widget _buildStackCard(BuildContext context, String category, List<String> items, double width) {
     return Container(
-      padding: const EdgeInsets.all(32),
+      width: width,
+      padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(20),
         border: Border.all(color: Theme.of(context).dividerColor),
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
@@ -63,13 +66,13 @@ class TechStackSection extends StatelessWidget {
               letterSpacing: 1.2,
             ),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 20),
           Wrap(
             spacing: 8,
             runSpacing: 8,
             children: items.map((item) {
               return Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 decoration: BoxDecoration(
                   color: Colors.white.withValues(alpha: 0.05),
                   borderRadius: BorderRadius.circular(8),
@@ -77,7 +80,7 @@ class TechStackSection extends StatelessWidget {
                 child: Text(
                   item,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    fontSize: 14,
+                    fontSize: 13,
                     fontWeight: FontWeight.w500,
                   ),
                 ),

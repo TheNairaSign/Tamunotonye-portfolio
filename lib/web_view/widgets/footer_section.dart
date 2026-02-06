@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:web/web.dart' as web;
 import '../../core/theme.dart';
 
 class FooterSection extends StatefulWidget {
@@ -124,13 +125,13 @@ class _FooterSectionState extends State<FooterSection> {
                     fontSize: 14,
                   ),
                 ),
-                // Row(
-                //   spacing: 24,
-                //   children: [
-                //     _buildFooterLink(context, 'LinkedIn'),
-                //     _buildFooterLink(context, 'Twitter'),
-                //   ],
-                // ),
+                Row(
+                  spacing: 24,
+                  children: [
+                    _buildFooterLink(context, 'LinkedIn'),
+                    _buildFooterLink(context, 'Download Resume', onTap: () => web.window.open('resume.pdf', '_blank')),
+                  ],
+                ),
               ],
             )
           else
@@ -150,7 +151,7 @@ class _FooterSectionState extends State<FooterSection> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _buildFooterLink(context, 'LinkedIn'),
-                    _buildFooterLink(context, 'Twitter'),
+                    _buildFooterLink(context, 'Download Resume', onTap: () => web.window.open('resume.pdf', '_blank')),
                   ],
                 ),
               ],
@@ -160,24 +161,17 @@ class _FooterSectionState extends State<FooterSection> {
     );
   }
 
-  Widget _buildSocialIcon(BuildContext context, IconData icon) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.05),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Icon(icon, color: Theme.of(context).iconTheme.color, size: 24),
-    );
-  }
-
-  Widget _buildFooterLink(BuildContext context, String title) {
-    return Text(
-      title,
-      style: TextStyle(
-        color: Theme.of(context).textTheme.bodyMedium?.color?.withValues(alpha: 0.6),
-        fontWeight: FontWeight.w500,
-        fontSize: 14,
+  Widget _buildFooterLink(BuildContext context, String title, {VoidCallback? onTap}) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(4),
+      child: Text(
+        title,
+        style: TextStyle(
+          color: Theme.of(context).textTheme.bodyMedium?.color?.withValues(alpha: 0.6),
+          fontWeight: FontWeight.w500,
+          fontSize: 14,
+        ),
       ),
     );
   }

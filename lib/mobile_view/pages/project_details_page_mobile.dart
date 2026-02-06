@@ -47,7 +47,7 @@ class _ProjectDetailsPageMobileState extends State<ProjectDetailsPageMobile> {
 
   Widget _buildAppBar(BuildContext context) {
     return SliverAppBar(
-      expandedHeight: 300,
+      expandedHeight: 240,
       pinned: true,
       backgroundColor: const Color(0xFF0F0F0F),
       leading: IconButton(
@@ -84,8 +84,8 @@ class _ProjectDetailsPageMobileState extends State<ProjectDetailsPageMobile> {
                 tag: 'project_icon_${widget.project.title}',
                 child: widget.project.screenshotsDark.isNotEmpty
                     ? Container(
-                        width: 120,
-                        height: 240,
+                        width: 90,
+                        height: 180,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16),
                           boxShadow: [
@@ -104,9 +104,9 @@ class _ProjectDetailsPageMobileState extends State<ProjectDetailsPageMobile> {
                           ),
                         ),
                       )
-                    : Icon(
+                      : Icon(
                         Icons.apps,
-                        size: 100,
+                        size: 80,
                         color: widget.project.color.withValues(alpha: 0.8),
                       ),
               ),
@@ -124,9 +124,9 @@ class _ProjectDetailsPageMobileState extends State<ProjectDetailsPageMobile> {
         Text(
           widget.project.title,
           style: TextStyle(
-            fontSize: 40,
+            fontSize: 28,
             fontWeight: FontWeight.w900,
-            letterSpacing: -1.0,
+            letterSpacing: -0.5,
             color: Theme.of(context).textTheme.displayLarge?.color,
           ),
         ),
@@ -166,7 +166,7 @@ class _ProjectDetailsPageMobileState extends State<ProjectDetailsPageMobile> {
         Text(
           'About the Project',
           style: TextStyle(
-            fontSize: 24,
+            fontSize: 20,
             fontWeight: FontWeight.bold,
             color: Theme.of(context).textTheme.headlineMedium?.color,
           ),
@@ -233,7 +233,7 @@ class _ProjectDetailsPageMobileState extends State<ProjectDetailsPageMobile> {
             Text(
               'Visuals',
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
                 color: Theme.of(context).textTheme.headlineMedium?.color,
               ),
@@ -264,7 +264,7 @@ class _ProjectDetailsPageMobileState extends State<ProjectDetailsPageMobile> {
         ),
         const SizedBox(height: 30),
         SizedBox(
-          height: 400,
+          height: 320,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             physics: const AlwaysScrollableScrollPhysics(),
@@ -272,7 +272,7 @@ class _ProjectDetailsPageMobileState extends State<ProjectDetailsPageMobile> {
             separatorBuilder: (_, __) => const SizedBox(width: 20),
             itemBuilder: (context, index) {
               return Container(
-                width: 200,
+                width: 160,
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.surface,
                   borderRadius: BorderRadius.circular(20),
@@ -311,15 +311,13 @@ class _ProjectDetailsPageMobileState extends State<ProjectDetailsPageMobile> {
             () => web.window.open(widget.project.githubUrl!, '_blank'),
             true,
           ),
-        if (widget.project.githubUrl != null && widget.project.liveUrl != null)
-          const SizedBox(height: 16),
-        // if (widget.project.liveUrl != null)
-        //   _buildActionButton(
-        //     'Live Demo',
-        //     Icons.launch,
-        //     () => web.window.open(widget.project.liveUrl!, '_blank'),
-        //     widget.project.githubUrl == null, // Primary if only live url
-        //   ),
+        const SizedBox(height: 16),
+        _buildActionButton(
+          'Download My Resume',
+          Icons.file_download_outlined,
+          () => web.window.open('resume.pdf', '_blank'),
+          false,
+        ),
       ],
     );
   }

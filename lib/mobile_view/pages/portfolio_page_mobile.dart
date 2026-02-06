@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/core/theme.dart';
 import 'package:portfolio/mobile_view/widgets/project_card.dart';
 import 'package:portfolio/web_view/models/project_data.dart';
+import 'package:portfolio/web_view/widgets/philosophy_section.dart';
 import 'package:portfolio/web_view/widgets/tech_stack_section.dart';
 import 'package:portfolio/web_view/widgets/footer_section.dart';
 import 'package:web/web.dart' as web;
@@ -10,7 +11,7 @@ class PortfolioPageMobile extends StatelessWidget {
   const PortfolioPageMobile({super.key});
 
   void openPdf() {
-    final url = 'https://cdn.syncfusion.com/content/PDFViewer/flutter-succinctly.pdf';
+    final url = 'resume.pdf';
     web.window.open(url, '_blank');
   }
 
@@ -176,20 +177,23 @@ class PortfolioPageMobile extends StatelessWidget {
               ),
             ),
           ),
+          const SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 20),
+              child: PhilosophySection(),
+            ),
+          ),
           SliverPadding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             sliver: SliverList(
               delegate: SliverChildBuilderDelegate(
                 (context, index) {
                   final project = projectDetails[index];
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 24),
-                    child: SizedBox(
-                      height: 400,
-                      child: projectDetails.isNotEmpty
-                          ? ProjectCard(project: project)
-                          : const SizedBox(),
-                    ),
+                    child: projectDetails.isNotEmpty
+                        ? ProjectCard(project: project)
+                        : const SizedBox(),
                   );
                 },
                 childCount: projectDetails.length,

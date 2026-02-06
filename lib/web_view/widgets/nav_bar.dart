@@ -19,7 +19,7 @@ class NavBar extends StatelessWidget {
 
 
 void openPdf() {
-  final url = 'https://cdn.syncfusion.com/content/PDFViewer/flutter-succinctly.pdf';
+  final url = 'resume.pdf';
   web.window.open(url, '_blank');
 }
 
