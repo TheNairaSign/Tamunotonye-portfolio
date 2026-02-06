@@ -66,22 +66,11 @@ class _LoadingScreenState extends State<LoadingScreen> with SingleTickerProvider
                   opacity: _opacity.value,
                   child: Transform.scale(
                     scale: _scale.value,
-                    child: Container(
-                      width: 80,
-                      height: 80,
-                      decoration: BoxDecoration(
-                        color: AppColors.primary,
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: AppColors.primary.withValues(alpha: 0.4),
-                            blurRadius: 30,
-                            spreadRadius: 10,
-                          ),
-                        ],
+                      child: Image.asset(
+                        'assets/images/logo.png',
+                        width: 100,
+                        height: 100,
                       ),
-                      child: const Icon(Icons.code, color: Colors.black, size: 40),
-                    ),
                   ),
                 ),
                 const SizedBox(height: 32),
