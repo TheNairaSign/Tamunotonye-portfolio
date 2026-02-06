@@ -5,6 +5,7 @@ import 'mobile_view/pages/portfolio_page_mobile.dart';
 import 'core/widgets/loading_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const Portfolio());
 }
 

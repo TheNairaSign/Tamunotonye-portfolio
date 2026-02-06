@@ -7,7 +7,7 @@ class ProjectData {
   final List<String> tags;
   final Color color;
   final String? githubUrl;
-  final String? liveUrl;
+  final Map<String, String>? liveUrl;
   final List<String> screenshotsLight;
   final List<String> screenshotsDark;
 
@@ -36,24 +36,65 @@ final List<ProjectData> projectDetails = [
     screenshotsLight: ['assets/screenshots/airdesk/airdesk-dash-light.jpg'],
     screenshotsDark: ['assets/screenshots/airdesk/airdesk-dash-dark.jpg'],
   ),
+  // ProjectData(
+  //   title: 'Vennloop',
+  //   description:
+  //       'A secure video conferencing networking platform for Consultants and Clients',
+  //   longDescription:
+  //       'Vennloop revolutionizes consultant-client interactions with encrypted video conferencing and real-time scheduling. Integrated with Agora SDK for high-quality video and Socket.io for low-latency messaging, it provides a professional-grade communication environment.',
+  //   tags: ['Agora SDK', 'Socket.io', 'Firebase', 'Clean Arch'],
+  //   color: const Color(0xFF9B59B6),
+  //   liveUrl: 'https://vennloop.com',
+  //   screenshotsLight: [],
+  //   screenshotsDark: [],
+  // ),
   ProjectData(
-    title: 'Vennloop',
+    title: 'Taskflow',
     description:
-        'A secure video conferencing networking platform for Consultants and Clients',
+        'A platform designed to help small teams organize, schedule, and manage tasks efficiently, combining API-driven data, clean architecture, and a modern, intuitive user interface.',
     longDescription:
-        'Vennloop revolutionizes consultant-client interactions with encrypted video conferencing and real-time scheduling. Integrated with Agora SDK for high-quality video and Socket.io for low-latency messaging, it provides a professional-grade communication environment.',
-    tags: ['Agora SDK', 'Socket.io', 'Firebase', 'Clean Arch'],
+        'Taskflow is a comprehensive project management solution built to streamline collaboration for small teams. It combines robust task organization and scheduling with a clean, intuitive interface. Leveraging API-driven data fetching and adhering to Clean Architecture principles, Taskflow ensures scalability, maintainability, and a seamless user experience across all functions.',
+    tags: ['Firebase', 'Provider'],
     color: const Color(0xFF9B59B6),
-    liveUrl: 'https://vennloop.com',
-    screenshotsLight: [],
-    screenshotsDark: [],
+    liveUrl: {},
+    screenshotsLight: [
+      'assets/screenshots/taskflow/tf-dash-light.jpg',
+      'assets/screenshots/taskflow/tf-schedule-light.jpg',
+      'assets/screenshots/taskflow/tf-teams-light.jpg',
+      'assets/screenshots/taskflow/tf-settings-light.jpg',
+    ],
+    screenshotsDark: [
+      'assets/screenshots/taskflow/tf-dash-dark.jpg',
+      'assets/screenshots/taskflow/tf-schedule-dark.jpg',
+      'assets/screenshots/taskflow/tf-teams-dark.jpg',
+      'assets/screenshots/taskflow/tf-settings-dark.jpg',
+    ],
+  ),
+
+  ProjectData(
+    title: 'Cluttercut',
+    description:
+        'A file duplicate cleaner with filtering algorithms for pinpointing exact duplicates',
+    longDescription:
+        'Cluttercut is a powerful storage optimization tool designed to identify and remove duplicate files with precision. Using advanced hashing algorithms and smart filters, it helps users reclaim valuable space while ensuring that important data remains safe.',
+    tags: ['Riverpod', 'Isar', 'Multithreading'],
+    color: const Color(0xFF9B59B6),
+    screenshotsLight: [
+      'assets/screenshots/cluttercut/cc-dash-light.jpg',
+      'assets/screenshots/cluttercut/cc-bin-light.jpg',
+    ],
+    screenshotsDark: [
+      'assets/screenshots/cluttercut/cc-dash-dark.jpg',
+      'assets/screenshots/cluttercut/cc-recycle-dark.jpg',
+    ],
+    githubUrl: 'https://github.com/TheNairaSign/clutter-cut'
   ),
   ProjectData(
     title: 'Natcycle',
     description:
-        'A collaborative project management tool for remote teams with offline-first capabilities.',
+        'A global recycling platform for waste management including waste management centers, recyclying dropoff centers and campaigns for waste management',
     longDescription:
-        'Natcycle addresses the challenges of remote team collaboration with a powerful offline-first architecture. Teams can sync tasks in real-time, navigate project locations via Google Maps SDK, and interact with an AI-driven ChatBot for workflow automation.',
+        'Natcycle is a comprehensive waste management platform connecting users with recycling centers and environmental campaigns. It facilitates finding drop-off locations, tracking recycling habits, and joining community initiatives for a greener planet.',
     tags: ['Provider', 'Google Maps', 'ChatBot', 'OfflineSync'],
     color: const Color(0xFFF1C40F),
     githubUrl: 'https://github.com/alexrivers/natcycle',
@@ -71,10 +112,10 @@ final List<ProjectData> projectDetails = [
   ProjectData(
     title: 'Thingsmatch',
     description:
-        'High-fidelity music streaming application with background playback and custom audio effects.',
+        'Got an item you want to give out for free? Thingsmatch provides the platform for you to find a taker with a tinder-swipe interface.',
     longDescription:
-        'Thingsmatch is a high-end music streaming experience focusing on audio fidelity. It features a custom audio engine, background playback services, and complex state management using a feature-first architecture.',
-    tags: ['Audio Engine', 'Feature-First', 'Socket.io'],
+        'Thingsmatch gamifies the process of giving away unwanted items. By using a Tinder-like swipe interface, it connects donors with people who need their items, promoting sustainability and community sharing while reducing waste.',
+    tags: ['Flutter', 'Swipe UI', 'Socket.io'],
     color: const Color(0xFFE74C3C),
     screenshotsLight: [
       'assets/screenshots/thingsmatch/tm-dash-light.jpg',
@@ -86,6 +127,10 @@ final List<ProjectData> projectDetails = [
       'assets/screenshots/thingsmatch/tm-details-dark.jpg',
       'assets/screenshots/thingsmatch/tm-impact-dark.jpg',
     ],
+    liveUrl: {
+      'ios' : '',
+      'android' : ''
+    }
   ),
   ProjectData(
     title: 'Loop',

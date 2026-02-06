@@ -322,13 +322,13 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
             true,
           ),
         const SizedBox(width: 24),
-        if (widget.project.liveUrl != null)
-          _buildActionButton(
-            'Live Demo',
-            Icons.launch,
-            () => web.window.open(widget.project.liveUrl!, '_blank'),
-            false,
-          ),
+        // if (widget.project.liveUrl != null)
+        //   _buildActionButton(
+        //     'Live Demo',
+        //     Icons.launch,
+        //     () => web.window.open(widget.project.liveUrl!, '_blank'),
+        //     false,
+        //   ),
       ],
     );
   }

@@ -313,13 +313,13 @@ class _ProjectDetailsPageMobileState extends State<ProjectDetailsPageMobile> {
           ),
         if (widget.project.githubUrl != null && widget.project.liveUrl != null)
           const SizedBox(height: 16),
-        if (widget.project.liveUrl != null)
-          _buildActionButton(
-            'Live Demo',
-            Icons.launch,
-            () => web.window.open(widget.project.liveUrl!, '_blank'),
-            widget.project.githubUrl == null, // Primary if only live url
-          ),
+        // if (widget.project.liveUrl != null)
+        //   _buildActionButton(
+        //     'Live Demo',
+        //     Icons.launch,
+        //     () => web.window.open(widget.project.liveUrl!, '_blank'),
+        //     widget.project.githubUrl == null, // Primary if only live url
+        //   ),
       ],
     );
   }

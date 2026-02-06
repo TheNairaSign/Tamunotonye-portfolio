@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../core/theme.dart';
 
+import 'package:web/web.dart' as web;
+
 class HeroSection extends StatelessWidget {
   const HeroSection({super.key, required this.onViewProjects});
   final VoidCallback onViewProjects;
@@ -81,7 +83,7 @@ class HeroSection extends StatelessWidget {
                     ),
                     const SizedBox(width: 20),
                     OutlinedButton(
-                      onPressed: () {},
+                      onPressed: () => web.window.open('https://github.com/TheNairaSign', '_blank'),
                       style: OutlinedButton.styleFrom(
                         foregroundColor: Theme.of(context).textTheme.bodyLarge?.color,
                         side: BorderSide(color: Theme.of(context).dividerColor),
@@ -91,6 +93,19 @@ class HeroSection extends StatelessWidget {
                         ),
                       ),
                       child: const Text('GitHub', style: TextStyle(fontWeight: FontWeight.bold)),
+                    ),
+                    const SizedBox(width: 20),
+                    OutlinedButton(
+                      onPressed: () => web.window.open('https://wakatime.com/@Tybob', '_blank'),
+                      style: OutlinedButton.styleFrom(
+                        foregroundColor: Theme.of(context).textTheme.bodyLarge?.color,
+                        side: BorderSide(color: Theme.of(context).dividerColor),
+                        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child: const Text('WakaTime', style: TextStyle(fontWeight: FontWeight.bold)),
                     ),
                   ],
                 ),

@@ -111,12 +111,10 @@ class _FooterSectionState extends State<FooterSection> {
                   ),
                 ),
                 Row(
+                  spacing: 24,
                   children: [
                     _buildFooterLink(context, 'LinkedIn'),
-                    const SizedBox(width: 24),
                     _buildFooterLink(context, 'Twitter'),
-                    const SizedBox(width: 24),
-                    _buildFooterLink(context, 'Dribbble'),
                   ],
                 ),
               ],
@@ -134,13 +132,11 @@ class _FooterSectionState extends State<FooterSection> {
                 ),
                 const SizedBox(height: 24),
                 Row(
+                  spacing: 24,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _buildFooterLink(context, 'LinkedIn'),
-                    const SizedBox(width: 24),
                     _buildFooterLink(context, 'Twitter'),
-                    const SizedBox(width: 24),
-                    _buildFooterLink(context, 'Dribbble'),
                   ],
                 ),
               ],

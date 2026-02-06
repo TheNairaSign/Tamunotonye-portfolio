@@ -42,6 +42,7 @@ class _ProjectCardState extends State<ProjectCard> {
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeOutCubic,
+          clipBehavior: Clip.antiAlias,
           transform: Matrix4.identity()
             ..translate(0.0, _isHovered ? -12.0 : 0.0, 0.0),
           decoration: BoxDecoration(
@@ -68,18 +69,22 @@ class _ProjectCardState extends State<ProjectCard> {
               // Project Image Placeholder
               Expanded(
                   child: Stack(
+                    clipBehavior: Clip.hardEdge,
                     alignment: Alignment.center,
                     children: [
                       // Subtle Gradient Background
-                      Container(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [
-                              widget.project.color.withValues(alpha: 0.2),
-                              widget.project.color.withValues(alpha: 0.05),
-                            ],
+                      // Subtle Gradient Background
+                      Positioned.fill(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [
+                                widget.project.color.withValues(alpha: 0.2),
+                                widget.project.color.withValues(alpha: 0.05),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -111,6 +116,7 @@ class _ProjectCardState extends State<ProjectCard> {
                                       ),
                                     ),
                                     child: ClipRRect(
+                                      clipBehavior: Clip.hardEdge,
                                       borderRadius: BorderRadius.circular(12),
                                       child: Image.asset(
                                         widget.project.screenshotsDark.first,
