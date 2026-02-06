@@ -32,7 +32,6 @@ final List<ProjectData> projectDetails = [
         'Airdesk is a high-performance file sharing solution built to handle rapid data transfer between multiple devices on the same network. It leverages custom REST APIs and Riverpod for robust state management, ensuring a seamless user experience across mobile and web platforms.',
     tags: ['REST APIs', 'Riverpod', 'WebSockets'],
     color: const Color(0xFF3498DB),
-    githubUrl: 'https://github.com/alexrivers/airdesk',
     screenshotsLight: ['assets/screenshots/airdesk/airdesk-dash-light.jpg'],
     screenshotsDark: ['assets/screenshots/airdesk/airdesk-dash-dark.jpg'],
   ),
@@ -69,6 +68,7 @@ final List<ProjectData> projectDetails = [
       'assets/screenshots/taskflow/tf-teams-dark.jpg',
       'assets/screenshots/taskflow/tf-settings-dark.jpg',
     ],
+    githubUrl: 'https://github.com/TheNairaSign/taskflow',
   ),
 
   ProjectData(
@@ -97,7 +97,6 @@ final List<ProjectData> projectDetails = [
         'Natcycle is a comprehensive waste management platform connecting users with recycling centers and environmental campaigns. It facilitates finding drop-off locations, tracking recycling habits, and joining community initiatives for a greener planet.',
     tags: ['Provider', 'Google Maps', 'ChatBot', 'OfflineSync'],
     color: const Color(0xFFF1C40F),
-    githubUrl: 'https://github.com/alexrivers/natcycle',
     screenshotsLight: [
       'assets/screenshots/natcycle/natcycle-dash-light.jpg',
       'assets/screenshots/natcycle/natcycle-map-light.jpg',
@@ -140,7 +139,7 @@ final List<ProjectData> projectDetails = [
         'Loop helps users maintain meaningful relationships through intelligent contact tracking. Built with BLoC and Isar Database, it ensures data privacy while providing powerful reminders, safety alerts, and seamless cloud backups.',
     tags: ['BLoC', 'Isar', 'Firebase', 'LocalFirst'],
     color: const Color(0xFF1ABC9C),
-    githubUrl: 'https://github.com/alexrivers/loop',
+    githubUrl: 'https://github.com/TheNairaSign/Vivapro',
     screenshotsLight: [
       'assets/screenshots/loop/loop-dash-light.jpg',
       'assets/screenshots/loop/loop-activity-light.jpg',

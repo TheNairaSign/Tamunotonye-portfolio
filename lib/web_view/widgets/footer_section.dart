@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../core/theme.dart';
 
 class FooterSection extends StatefulWidget {
@@ -39,18 +40,18 @@ class _FooterSectionState extends State<FooterSection> {
               height: 1.6,
             ),
           ),
+          // const SizedBox(height: 48),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: [
+          //     _buildSocialIcon(context, Icons.link),
+          //     const SizedBox(width: 20),
+          //     _buildSocialIcon(context, Icons.terminal),
+          //     const SizedBox(width: 20),
+          //     _buildSocialIcon(context, Icons.email_outlined),
+          //   ],
+          // ),
           const SizedBox(height: 48),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _buildSocialIcon(context, Icons.link),
-              const SizedBox(width: 20),
-              _buildSocialIcon(context, Icons.terminal),
-              const SizedBox(width: 20),
-              _buildSocialIcon(context, Icons.email_outlined),
-            ],
-          ),
-          const SizedBox(height: 60),
           Column(
             children: [
               ElevatedButton(
@@ -87,7 +88,20 @@ class _FooterSectionState extends State<FooterSection> {
                         children: [
                           _buildContactDetail(context, Icons.phone, "+234 8141389878"),
                           const SizedBox(height: 12),
-                          _buildContactDetail(context, Icons.email, "tonyebobmanuel2@gmail.com"),
+                          _buildContactDetail(
+                            context,
+                            Icons.email,
+                            "tonyebobmanuel2@gmail.com",
+                            onTap: () async {
+                              final Uri emailLaunchUri = Uri(
+                                scheme: 'mailto',
+                                path: 'tonyebobmanuel2@gmail.com',
+                              );
+                              if (!await launchUrl(emailLaunchUri)) {
+                                debugPrint('Could not launch email');
+                              }
+                            },
+                          ),
                         ],
                       ),
                     ),
@@ -110,13 +124,13 @@ class _FooterSectionState extends State<FooterSection> {
                     fontSize: 14,
                   ),
                 ),
-                Row(
-                  spacing: 24,
-                  children: [
-                    _buildFooterLink(context, 'LinkedIn'),
-                    _buildFooterLink(context, 'Twitter'),
-                  ],
-                ),
+                // Row(
+                //   spacing: 24,
+                //   children: [
+                //     _buildFooterLink(context, 'LinkedIn'),
+                //     _buildFooterLink(context, 'Twitter'),
+                //   ],
+                // ),
               ],
             )
           else
@@ -168,21 +182,33 @@ class _FooterSectionState extends State<FooterSection> {
     );
   }
 
-  Widget _buildContactDetail(BuildContext context, IconData icon, String text) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(icon, color: AppColors.primary, size: 20),
-        const SizedBox(width: 12),
-        Text(
-          text,
-          style: TextStyle(
-            fontSize: 16,
-            color: Theme.of(context).textTheme.bodyMedium?.color,
-            fontWeight: FontWeight.w500,
-          ),
+  Widget _buildContactDetail(
+    BuildContext context,
+    IconData icon,
+    String text, {
+    VoidCallback? onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(8),
+      child: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, color: AppColors.primary, size: 20),
+            const SizedBox(width: 12),
+            Text(
+              text,
+              style: TextStyle(
+                fontSize: 16,
+                color: Theme.of(context).textTheme.bodyMedium?.color,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
