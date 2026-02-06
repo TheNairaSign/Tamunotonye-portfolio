@@ -7,12 +7,30 @@ import 'package:portfolio/web_view/widgets/tech_stack_section.dart';
 import 'package:portfolio/web_view/widgets/footer_section.dart';
 import 'package:web/web.dart' as web;
 
-class PortfolioPageMobile extends StatelessWidget {
+class PortfolioPageMobile extends StatefulWidget {
   const PortfolioPageMobile({super.key});
+
+  @override
+  State<PortfolioPageMobile> createState() => _PortfolioPageMobileState();
+}
+
+class _PortfolioPageMobileState extends State<PortfolioPageMobile> {
+  final GlobalKey _projectsKey = GlobalKey();
 
   void openPdf() {
     final url = 'resume.pdf';
     web.window.open(url, '_blank');
+  }
+
+  void _scrollToProjects() {
+    final context = _projectsKey.currentContext;
+    if (context != null) {
+      Scrollable.ensureVisible(
+        context,
+        duration: const Duration(milliseconds: 800),
+        curve: Curves.easeInOutQuart,
+      );
+    }
   }
 
   @override
@@ -75,8 +93,7 @@ class PortfolioPageMobile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
                       color: AppColors.primary.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(20),
@@ -133,45 +150,30 @@ class PortfolioPageMobile extends StatelessWidget {
                     runSpacing: 16,
                     children: [
                       ElevatedButton(
-                        onPressed: () {}, // Scroll to projects?
+                        onPressed: _scrollToProjects,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.primary,
                           foregroundColor: Colors.black,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 24, vertical: 16),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
+                          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                           elevation: 0,
                         ),
-                        child: const Text('View Projects',
-                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        child: const Text('View Projects', style: TextStyle(fontWeight: FontWeight.bold)),
                       ),
                       OutlinedButton(
-                        onPressed: () {},
-                        style: OutlinedButton.styleFrom(
-                          foregroundColor:
-                              Theme.of(context).textTheme.bodyLarge?.color,
-                          side: BorderSide(
-                              color: Theme.of(context).dividerColor),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 24, vertical: 16),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
+                        onPressed: () => web.window.open(
+                          'https://github.com/TheNairaSign',
+                          '_blank',
                         ),
-                        child: const Text('GitHub',
-                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor:Theme.of(context).textTheme.bodyLarge?.color,
+                          side: BorderSide(color: Theme.of(context).dividerColor),
+                          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                        ),
+                        child: const Text('GitHub',style: TextStyle(fontWeight: FontWeight.bold)),
                       ),
                     ],
-                  ),
-                  const SizedBox(height: 60),
-                  const Text(
-                    'Featured Projects',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
                   ),
                 ],
               ),
@@ -179,8 +181,21 @@ class PortfolioPageMobile extends StatelessWidget {
           ),
           const SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 20),
+              padding: EdgeInsets.symmetric(vertical: 10),
               child: PhilosophySection(),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+              child: Text(
+                'Featured Projects',
+                key: _projectsKey,
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
           ),
           SliverPadding(

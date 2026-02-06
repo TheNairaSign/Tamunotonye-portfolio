@@ -17,6 +17,9 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final double width = MediaQuery.of(context).size.width;
+    final bool isSmall = width < 1000;
+    
     return Scaffold(
       backgroundColor: AppColors.background,
       body: CustomScrollView(
@@ -24,7 +27,10 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
           _buildAppBar(context),
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 60),
+              padding: EdgeInsets.symmetric(
+                horizontal: width > 1200 ? 80.0 : (width > 600 ? 40.0 : 20.0),
+                vertical: isSmall ? 40 : 60,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -46,8 +52,9 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
   }
 
   Widget _buildAppBar(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     return SliverAppBar(
-      expandedHeight: 400,
+      expandedHeight: width < 1000 ? 300 : 400,
       pinned: true,
       backgroundColor: const Color(0xFF0F0F0F),
       leading: IconButton(
@@ -55,15 +62,15 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
         onPressed: () => Navigator.pop(context),
       ),
       flexibleSpace: FlexibleSpaceBar(
-        title: Text(
+        title: width < 600 ? const SizedBox.shrink() : Text(
           widget.project.title,
-          style: const TextStyle(
+          style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
-            fontSize: 20,
+            fontSize: width < 1000 ? 16 : 20,
           ),
         ),
-        titlePadding: const EdgeInsets.only(left: 60, bottom: 16),
+        titlePadding: EdgeInsets.only(left: width < 1000 ? 20 : 60, bottom: 16),
         centerTitle: false,
         background: Stack(
           fit: StackFit.expand,
@@ -119,13 +126,14 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
   }
 
   Widget _buildHeader(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           widget.project.title,
           style: TextStyle(
-            fontSize: 64,
+            fontSize: width > 1200 ? 64 : (width > 600 ? 48 : 32),
             fontWeight: FontWeight.w900,
             letterSpacing: -1.5,
             color: Theme.of(context).textTheme.displayLarge?.color,
@@ -161,6 +169,55 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
   }
 
   Widget _buildMainContent(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    
+    if (width < 1000) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'About the Project',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).textTheme.headlineMedium?.color,
+            ),
+          ),
+          const SizedBox(height: 20),
+          Text(
+            widget.project.longDescription,
+            style: TextStyle(
+              fontSize: 16,
+              color: Theme.of(context).textTheme.bodyLarge?.color?.withValues(alpha: 0.8),
+              height: 1.6,
+            ),
+          ),
+          const SizedBox(height: 40),
+          Container(
+            padding: const EdgeInsets.all(24),
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surface,
+              borderRadius: BorderRadius.circular(24),
+              border: Border.all(color: Theme.of(context).dividerColor),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Tech Specs',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 20),
+                _buildTechItem(Icons.code, 'Flutter & Dart'),
+                _buildTechItem(Icons.storage, 'State Management'),
+                _buildTechItem(Icons.cloud, 'Backend Services'),
+              ],
+            ),
+          ),
+        ],
+      );
+    }
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -322,13 +379,12 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
             true,
           ),
         const SizedBox(width: 24),
-        // if (widget.project.liveUrl != null)
-        //   _buildActionButton(
-        //     'Live Demo',
-        //     Icons.launch,
-        //     () => web.window.open(widget.project.liveUrl!, '_blank'),
-        //     false,
-        //   ),
+        _buildActionButton(
+          'Download My Resume',
+          Icons.file_download_outlined,
+          () => web.window.open('resume.pdf', '_blank'),
+          false,
+        ),
       ],
     );
   }
