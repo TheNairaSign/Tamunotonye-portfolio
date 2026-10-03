@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:portfolio/core/theme.dart';
 import 'package:portfolio/mobile_view/widgets/project_card.dart';
 import 'package:portfolio/web_view/models/project_data.dart';
-import 'package:portfolio/web_view/widgets/philosophy_section.dart';
-import 'package:portfolio/web_view/widgets/tech_stack_section.dart';
-import 'package:portfolio/web_view/widgets/footer_section.dart';
+import 'package:portfolio/core/widgets/philosophy_section.dart';
+import 'package:portfolio/core/widgets/tech_stack_section.dart';
+import 'package:portfolio/core/widgets/footer_section.dart';
 import 'package:web/web.dart' as web;
 
 class PortfolioPageMobile extends StatefulWidget {
@@ -107,7 +108,7 @@ class _PortfolioPageMobileState extends State<PortfolioPageMobile> {
                         letterSpacing: 1.0,
                       ),
                     ),
-                  ),
+                  ).animate().fadeIn(duration: 600.ms).slideX(begin: -0.2),
                   const SizedBox(height: 24),
                   Text(
                     'Tamunotonye\nBob-Manuel',
@@ -117,7 +118,7 @@ class _PortfolioPageMobileState extends State<PortfolioPageMobile> {
                       height: 1.1,
                       color: Theme.of(context).textTheme.headlineLarge?.color,
                     ),
-                  ),
+                  ).animate().fadeIn(delay: 200.ms, duration: 600.ms).slideX(begin: -0.2),
                   const SizedBox(height: 16),
                   Text(
                     'Mobile App Developer | Flutter • Dart • Firebase • Clean Architecture',
@@ -130,7 +131,7 @@ class _PortfolioPageMobileState extends State<PortfolioPageMobile> {
                           ?.withValues(alpha: 0.8),
                       height: 1.4,
                     ),
-                  ),
+                  ).animate().fadeIn(delay: 400.ms, duration: 600.ms).slideX(begin: -0.2),
                   const SizedBox(height: 24),
                   Text(
                     'I build scalable, production-ready mobile applications with a focus on performance and clean, maintainable code.',
@@ -143,7 +144,7 @@ class _PortfolioPageMobileState extends State<PortfolioPageMobile> {
                           ?.withValues(alpha: 0.6),
                       height: 1.6,
                     ),
-                  ),
+                  ).animate().fadeIn(delay: 600.ms, duration: 600.ms).slideX(begin: -0.2),
                   const SizedBox(height: 32),
                   Wrap(
                     spacing: 16,
@@ -174,16 +175,16 @@ class _PortfolioPageMobileState extends State<PortfolioPageMobile> {
                         child: const Text('GitHub',style: TextStyle(fontWeight: FontWeight.bold)),
                       ),
                     ],
-                  ),
+                  ).animate().fadeIn(delay: 800.ms, duration: 600.ms),
                 ],
               ),
             ),
           ),
-          const SliverToBoxAdapter(
-            child: Padding(
+          SliverToBoxAdapter(
+            child: const Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
               child: PhilosophySection(),
-            ),
+            ).animate().fadeIn(delay: 1000.ms),
           ),
           SliverToBoxAdapter(
             child: Padding(
@@ -206,10 +207,8 @@ class _PortfolioPageMobileState extends State<PortfolioPageMobile> {
                   final project = projectDetails[index];
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 24),
-                    child: projectDetails.isNotEmpty
-                        ? ProjectCard(project: project)
-                        : const SizedBox(),
-                  );
+                    child: ProjectCard(project: project),
+                  ).animate().fadeIn(delay: (100 * index).ms).slideY(begin: 0.1);
                 },
                 childCount: projectDetails.length,
               ),
@@ -223,3 +222,4 @@ class _PortfolioPageMobileState extends State<PortfolioPageMobile> {
     );
   }
 }
+

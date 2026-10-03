@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import '../widgets/nav_bar.dart';
 import '../widgets/hero_section.dart';
-import '../widgets/philosophy_section.dart';
-import '../widgets/tech_stack_section.dart';
+import '../../core/widgets/philosophy_section.dart';
+import '../../core/widgets/tech_stack_section.dart';
 import '../widgets/projects_section.dart';
-import '../widgets/footer_section.dart';
+import '../../core/widgets/footer_section.dart';
 
 class PortfolioPageWeb extends StatefulWidget {
   const PortfolioPageWeb({super.key});

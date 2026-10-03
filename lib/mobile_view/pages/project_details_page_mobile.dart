@@ -31,6 +31,10 @@ class _ProjectDetailsPageMobileState extends State<ProjectDetailsPageMobile> {
                   _buildHeader(context),
                   const SizedBox(height: 40),
                   _buildMainContent(context),
+                  if (widget.project.highlights.isNotEmpty) ...[
+                    const SizedBox(height: 40),
+                    _buildHighlights(context),
+                  ],
                   const SizedBox(height: 40),
                   _buildScreenshotGallery(context),
                   const SizedBox(height: 60),
@@ -180,6 +184,10 @@ class _ProjectDetailsPageMobileState extends State<ProjectDetailsPageMobile> {
             height: 1.6,
           ),
         ),
+        if (widget.project.role != null)
+          _buildCallout(context, Icons.person_outline, 'My Role', widget.project.role!),
+        if (widget.project.challenge != null)
+          _buildCallout(context, Icons.lightbulb_outline, 'Key Challenge', widget.project.challenge!),
         const SizedBox(height: 30),
         Container(
           padding: const EdgeInsets.all(24),
@@ -196,12 +204,100 @@ class _ProjectDetailsPageMobileState extends State<ProjectDetailsPageMobile> {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 20),
-              _buildTechItem(Icons.code, 'Flutter & Dart'),
-              _buildTechItem(Icons.storage, 'State Management'),
-              _buildTechItem(Icons.cloud, 'Backend Services'),
+              ...(widget.project.stack.isNotEmpty ? widget.project.stack : widget.project.tags)
+                  .map((tech) => _buildTechItem(Icons.check_circle_outline, tech)),
             ],
           ),
         ),
+      ],
+    );
+  }
+
+  Widget _buildCallout(BuildContext context, IconData icon, String label, String text) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 24),
+      child: Container(
+        padding: const EdgeInsets.all(18),
+        decoration: BoxDecoration(
+          color: widget.project.color.withValues(alpha: 0.06),
+          borderRadius: BorderRadius.circular(16),
+          border: Border(left: BorderSide(color: widget.project.color, width: 3)),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(icon, color: widget.project.color, size: 18),
+                const SizedBox(width: 8),
+                Text(
+                  label,
+                  style: TextStyle(
+                    color: widget.project.color,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 13,
+                    letterSpacing: 0.5,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Text(
+              text,
+              style: TextStyle(
+                fontSize: 15,
+                color: Theme.of(context).textTheme.bodyLarge?.color?.withValues(alpha: 0.85),
+                height: 1.6,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildHighlights(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Engineering Highlights',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Theme.of(context).textTheme.headlineMedium?.color,
+          ),
+        ),
+        const SizedBox(height: 20),
+        for (final highlight in widget.project.highlights)
+          Container(
+            width: double.infinity,
+            margin: const EdgeInsets.only(bottom: 12),
+            padding: const EdgeInsets.all(18),
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surface,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: Theme.of(context).dividerColor),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  highlight.title,
+                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  highlight.description,
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.white.withValues(alpha: 0.7),
+                    height: 1.5,
+                  ),
+                ),
+              ],
+            ),
+          ),
       ],
     );
   }
@@ -213,7 +309,7 @@ class _ProjectDetailsPageMobileState extends State<ProjectDetailsPageMobile> {
         children: [
           Icon(icon, color: widget.project.color, size: 18),
           const SizedBox(width: 12),
-          Text(title, style: const TextStyle(fontSize: 14)),
+          Expanded(child: Text(title, style: const TextStyle(fontSize: 14))),
         ],
       ),
     );
@@ -304,20 +400,35 @@ class _ProjectDetailsPageMobileState extends State<ProjectDetailsPageMobile> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        if (widget.project.githubUrl != null)
+        if (widget.project.githubUrl != null) ...[
           _buildActionButton(
             'View on GitHub',
             Icons.logo_dev,
             () => web.window.open(widget.project.githubUrl!, '_blank'),
             true,
           ),
-        const SizedBox(height: 16),
+          const SizedBox(height: 16),
+        ],
         _buildActionButton(
           'Download My Resume',
           Icons.file_download_outlined,
           () => web.window.open('resume.pdf', '_blank'),
           false,
         ),
+        if (widget.project.repoNote != null) ...[
+          const SizedBox(height: 16),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.info_outline, size: 14, color: Colors.white54),
+              const SizedBox(width: 6),
+              Text(
+                widget.project.repoNote!,
+                style: const TextStyle(fontSize: 13, color: Colors.white54),
+              ),
+            ],
+          ),
+        ],
       ],
     );
   }

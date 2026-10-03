@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../core/theme.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import '../theme.dart';
 
 class PhilosophySection extends StatelessWidget {
   const PhilosophySection({super.key});
@@ -23,7 +24,7 @@ class PhilosophySection extends StatelessWidget {
               fontWeight: FontWeight.bold,
               letterSpacing: 1.2,
             ),
-          ),
+          ).animate().fadeIn(duration: 600.ms).slideX(begin: -0.2),
           const SizedBox(height: 32),
           if (width > 900)
             Row(
@@ -31,14 +32,28 @@ class PhilosophySection extends StatelessWidget {
               children: [
                 Expanded(
                   flex: 2,
-                  child: Text(
-                    'Engineering is more than just writing code; It\'s about building systems that scale. I specialize in production-grade applications where clean architecture meets high-performance engineering. By mastering BloC and Clean Architecture, I ensure every feature is testable, fluid, and built to evolve.',
-                    style: TextStyle(
-                      fontSize: width > 1200 ? 32 : 28,
-                      fontWeight: FontWeight.w600,
-                      height: 1.4,
-                    ),
-                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Engineering is more than just writing code; It\'s about building systems that scale.',
+                        style: TextStyle(
+                          fontSize: width > 1200 ? 32 : 28,
+                          fontWeight: FontWeight.w600,
+                          height: 1.3,
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+                      Text(
+                        'I specialize in production-grade applications where clean architecture meets high-performance engineering. By mastering BloC and Clean Architecture, I ensure every feature is testable, fluid, and built to evolve.',
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Theme.of(context).textTheme.bodyMedium?.color?.withValues(alpha: 0.7),
+                          height: 1.6,
+                        ),
+                      ),
+                    ],
+                  ).animate().fadeIn(delay: 200.ms, duration: 600.ms).slideX(begin: -0.1),
                 ),
                 const SizedBox(width: 80),
                 Expanded(
@@ -49,14 +64,21 @@ class PhilosophySection extends StatelessWidget {
                         Icons.architecture,
                         'Scalable Architecture',
                         'Implementing Clean Architecture for modular, testable, and maintainable systems.',
-                      ),
+                      ).animate().fadeIn(delay: 400.ms, duration: 600.ms).slideY(begin: 0.2),
                       const SizedBox(height: 40),
                       _buildPoint(
                         context,
                         Icons.speed,
                         'Performance First',
                         'Optimizing for 60 FPS and efficient resource management for a premium feel.',
-                      ),
+                      ).animate().fadeIn(delay: 600.ms, duration: 600.ms).slideY(begin: 0.2),
+                      const SizedBox(height: 40),
+                      _buildPoint(
+                        context,
+                        Icons.cloud_off,
+                        'Offline-First Design',
+                        'Ensuring seamless user experiences regardless of network availability.',
+                      ).animate().fadeIn(delay: 800.ms, duration: 600.ms).slideY(begin: 0.2),
                     ],
                   ),
                 ),
@@ -67,27 +89,43 @@ class PhilosophySection extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Engineering is more than just writing code; it\'s about building systems that scale. I specialize in production-grade applications where clean architecture meets high-performance engineering.',
+                  'Engineering is more than just writing code; it\'s about building systems that scale.',
                   style: TextStyle(
                     fontSize: width > 600 ? 28 : 22,
                     fontWeight: FontWeight.w600,
-                    height: 1.4,
+                    height: 1.3,
                   ),
-                ),
+                ).animate().fadeIn(delay: 200.ms, duration: 600.ms).slideX(begin: -0.1),
+                const SizedBox(height: 16),
+                Text(
+                  'I specialize in production-grade applications where clean architecture meets high-performance engineering.',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Theme.of(context).textTheme.bodyMedium?.color?.withValues(alpha: 0.7),
+                    height: 1.6,
+                  ),
+                ).animate().fadeIn(delay: 300.ms, duration: 600.ms),
                 const SizedBox(height: 48),
                 _buildPoint(
                   context,
                   Icons.architecture,
                   'Scalable Architecture',
                   'Implementing Clean Architecture for modular, testable, and maintainable systems.',
-                ),
+                ).animate().fadeIn(delay: 400.ms, duration: 600.ms).slideY(begin: 0.2),
                 const SizedBox(height: 32),
                 _buildPoint(
                   context,
                   Icons.speed,
                   'Performance First',
                   'Optimizing for 60 FPS and efficient resource management for a premium feel.',
-                ),
+                ).animate().fadeIn(delay: 600.ms, duration: 600.ms).slideY(begin: 0.2),
+                const SizedBox(height: 32),
+                _buildPoint(
+                  context,
+                  Icons.cloud_off,
+                  'Offline-First Design',
+                  'Ensuring seamless user experiences regardless of network availability.',
+                ).animate().fadeIn(delay: 800.ms, duration: 600.ms).slideY(begin: 0.2),
               ],
             ),
         ],

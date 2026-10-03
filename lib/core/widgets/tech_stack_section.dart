@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../core/theme.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import '../theme.dart';
 
 class TechStackSection extends StatelessWidget {
   const TechStackSection({super.key});
@@ -22,7 +23,15 @@ class TechStackSection extends StatelessWidget {
               fontSize: 32,
               fontWeight: FontWeight.bold,
             ),
-          ),
+          ).animate().fadeIn(duration: 600.ms).slideX(begin: -0.2),
+          const SizedBox(height: 16),
+          Text(
+            'The tools and technologies I use to bring ideas to life.',
+            style: TextStyle(
+              fontSize: 18,
+              color: Theme.of(context).textTheme.bodyMedium?.color?.withValues(alpha: 0.6),
+            ),
+          ).animate().fadeIn(delay: 200.ms, duration: 600.ms),
           const SizedBox(height: 48),
           LayoutBuilder(
             builder: (context, constraints) {
@@ -31,10 +40,14 @@ class TechStackSection extends StatelessWidget {
                 spacing: 24,
                 runSpacing: 24,
                 children: [
-                  _buildStackCard(context, 'MOBILE', ['Flutter', 'Dart'], cardWidth),
-                  _buildStackCard(context, 'STATE MANAGEMENT', ['BLoC', 'Provider', 'Riverpod'], cardWidth),
-                  _buildStackCard(context, 'BACKEND', ['Firebase', 'Supabase', 'Rest APIs'], cardWidth),
-                  _buildStackCard(context, 'ARCHITECTURE', ['MVVM', 'Clean Architecture', 'TDD'], cardWidth),
+                  _buildStackCard(context, 'MOBILE', ['Flutter', 'Dart'], cardWidth)
+                      .animate().fadeIn(delay: 200.ms, duration: 600.ms).scale(begin: const Offset(0.9, 0.9)),
+                  _buildStackCard(context, 'STATE MANAGEMENT', ['BLoC', 'Provider', 'Riverpod'], cardWidth)
+                      .animate().fadeIn(delay: 400.ms, duration: 600.ms).scale(begin: const Offset(0.9, 0.9)),
+                  _buildStackCard(context, 'BACKEND', ['Firebase', 'Supabase', 'Rest APIs'], cardWidth)
+                      .animate().fadeIn(delay: 600.ms, duration: 600.ms).scale(begin: const Offset(0.9, 0.9)),
+                  _buildStackCard(context, 'ARCHITECTURE', ['MVVM', 'Clean Architecture', 'TDD'], cardWidth)
+                      .animate().fadeIn(delay: 800.ms, duration: 600.ms).scale(begin: const Offset(0.9, 0.9)),
                 ],
               );
             },

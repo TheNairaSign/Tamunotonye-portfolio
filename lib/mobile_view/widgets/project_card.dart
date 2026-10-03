@@ -60,10 +60,10 @@ class _ProjectCardState extends State<ProjectCard> {
             boxShadow: [
               if (_isHovered)
                 BoxShadow(
-                  color: widget.project.color.withValues(alpha: 0.1),
-                  blurRadius: 30,
-                  offset: const Offset(0, 20),
-                  spreadRadius: -5,
+                  color: widget.project.color.withValues(alpha: 0.3),
+                  blurRadius: 40,
+                  offset: const Offset(0, 10),
+                  spreadRadius: -10,
                 ),
             ],
           ),

@@ -13,6 +13,13 @@ class ProjectDetailsPage extends StatefulWidget {
 }
 
 class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
+  static const _highlightIcons = [
+    Icons.account_tree_outlined,
+    Icons.bolt_outlined,
+    Icons.security_outlined,
+    Icons.layers_outlined,
+  ];
+
   bool _isLightMockup = false;
 
   @override
@@ -37,6 +44,10 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                   _buildHeader(context),
                   const SizedBox(height: 60),
                   _buildMainContent(context),
+                  if (widget.project.highlights.isNotEmpty) ...[
+                    const SizedBox(height: 80),
+                    _buildArchitectureSection(context),
+                  ],
                   const SizedBox(height: 80),
                   _buildScreenshotGallery(context),
                   const SizedBox(height: 80),
@@ -48,6 +59,80 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildArchitectureSection(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Engineering Highlights',
+          style: TextStyle(
+            fontSize: 32,
+            fontWeight: FontWeight.bold,
+            color: Theme.of(context).textTheme.headlineMedium?.color,
+          ),
+        ),
+        const SizedBox(height: 32),
+        Container(
+          padding: const EdgeInsets.all(32),
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.surface,
+            borderRadius: BorderRadius.circular(24),
+            border: Border.all(color: Theme.of(context).dividerColor),
+          ),
+          child: Column(
+            children: [
+              for (final (index, highlight) in widget.project.highlights.indexed) ...[
+                if (index > 0) const Divider(height: 40, color: Colors.white12),
+                _buildArchitecturePoint(
+                  _highlightIcons[index % _highlightIcons.length],
+                  highlight.title,
+                  highlight.description,
+                ),
+              ],
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildArchitecturePoint(IconData icon, String title, String description) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: widget.project.color.withValues(alpha: 0.1),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Icon(icon, color: widget.project.color, size: 24),
+        ),
+        const SizedBox(width: 24),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                description,
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.white.withValues(alpha: 0.7),
+                  height: 1.5,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 
@@ -192,6 +277,7 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
               height: 1.6,
             ),
           ),
+          ..._buildRoleAndChallenge(context, 16),
           const SizedBox(height: 40),
           Container(
             padding: const EdgeInsets.all(24),
@@ -208,9 +294,7 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 20),
-                _buildTechItem(Icons.code, 'Flutter & Dart'),
-                _buildTechItem(Icons.storage, 'State Management'),
-                _buildTechItem(Icons.cloud, 'Backend Services'),
+                ..._techSpecs.map((tech) => _buildTechItem(Icons.check_circle_outline, tech)),
               ],
             ),
           ),
@@ -243,6 +327,7 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                   height: 1.8,
                 ),
               ),
+              ..._buildRoleAndChallenge(context, 18),
             ],
           ),
         ),
@@ -263,14 +348,67 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 24),
-                _buildTechItem(Icons.code, 'Flutter & Dart'),
-                _buildTechItem(Icons.storage, 'State Management'),
-                _buildTechItem(Icons.cloud, 'Backend Services'),
+                ..._techSpecs.map((tech) => _buildTechItem(Icons.check_circle_outline, tech)),
               ],
             ),
           ),
         ),
       ],
+    );
+  }
+
+  List<String> get _techSpecs =>
+      widget.project.stack.isNotEmpty ? widget.project.stack : widget.project.tags;
+
+  List<Widget> _buildRoleAndChallenge(BuildContext context, double fontSize) {
+    return [
+      if (widget.project.role != null)
+        _buildCallout(context, Icons.person_outline, 'My Role', widget.project.role!, fontSize),
+      if (widget.project.challenge != null)
+        _buildCallout(context, Icons.lightbulb_outline, 'Key Challenge', widget.project.challenge!, fontSize),
+    ];
+  }
+
+  Widget _buildCallout(BuildContext context, IconData icon, String label, String text, double fontSize) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 32),
+      child: Container(
+        padding: const EdgeInsets.all(24),
+        decoration: BoxDecoration(
+          color: widget.project.color.withValues(alpha: 0.06),
+          borderRadius: BorderRadius.circular(20),
+          border: Border(left: BorderSide(color: widget.project.color, width: 3)),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(icon, color: widget.project.color, size: 20),
+                const SizedBox(width: 10),
+                Text(
+                  label,
+                  style: TextStyle(
+                    color: widget.project.color,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                    letterSpacing: 0.5,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            Text(
+              text,
+              style: TextStyle(
+                fontSize: fontSize,
+                color: Theme.of(context).textTheme.bodyLarge?.color?.withValues(alpha: 0.85),
+                height: 1.6,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -281,7 +419,7 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
         children: [
           Icon(icon, color: widget.project.color, size: 20),
           const SizedBox(width: 16),
-          Text(title, style: const TextStyle(fontSize: 16)),
+          Expanded(child: Text(title, style: const TextStyle(fontSize: 16))),
         ],
       ),
     );
@@ -369,22 +507,41 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
   }
 
   Widget _buildActionButtons() {
-    return Row(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (widget.project.githubUrl != null)
-          _buildActionButton(
-            'View on GitHub',
-            Icons.logo_dev,
-            () => web.window.open(widget.project.githubUrl!, '_blank'),
-            true,
-          ),
-        const SizedBox(width: 24),
-        _buildActionButton(
-          'Download My Resume',
-          Icons.file_download_outlined,
-          () => web.window.open('resume.pdf', '_blank'),
-          false,
+        Wrap(
+          spacing: 24,
+          runSpacing: 16,
+          children: [
+            if (widget.project.githubUrl != null)
+              _buildActionButton(
+                'View on GitHub',
+                Icons.logo_dev,
+                () => web.window.open(widget.project.githubUrl!, '_blank'),
+                true,
+              ),
+            _buildActionButton(
+              'Download My Resume',
+              Icons.file_download_outlined,
+              () => web.window.open('resume.pdf', '_blank'),
+              false,
+            ),
+          ],
         ),
+        if (widget.project.repoNote != null) ...[
+          const SizedBox(height: 16),
+          Row(
+            children: [
+              const Icon(Icons.info_outline, size: 16, color: Colors.white54),
+              const SizedBox(width: 8),
+              Text(
+                widget.project.repoNote!,
+                style: const TextStyle(fontSize: 14, color: Colors.white54),
+              ),
+            ],
+          ),
+        ],
       ],
     );
   }
